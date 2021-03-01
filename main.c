@@ -44,14 +44,24 @@ int main() {
                 carregarProjetos(&projetos);
                 break;
             case 2:
-                menuFuncinonarios();
+                funcionarios.funcionarios = (Funcionarios*) malloc(TAM_INICIAL_FUNCIONARIOS * sizeof (Funcionarios));
+                funcionarios.contador = 0;
+                funcionarios.tamanho = TAM_INICIAL_FUNCIONARIOS;
+                
+                menuFuncinonarios(&funcionarios);
                 break;
             case 3:
-                menuProjetos();
+                projetos.projetos = (Projetos*) malloc(TAM_INICIAL_PROJETOS * sizeof (Projetos));
+                projetos.contador = 0;
+                projetos.tamanho = TAM_INICIAL_PROJETOS; 
+                
+                menuProjetos(&funcionarios,&projetos);
                 break;
-            case 3:
+/*
+            case 4:
                 menuListas();
                 break;
+*/
             default:
                 printf("\nOpcão invalida!");
         }

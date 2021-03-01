@@ -80,10 +80,10 @@ void guardarFuncionariosFILE(Funcionarios *funcionarios){
     fclose(fp);
 }
 
-int procurarFuncionario(Funcionarios funcionarios, int codigoProcurar) {
+int procurarFuncionario(Funcionarios *funcionarios, int codigoProcurar) {
     int i;
-    for (i = 0; i < funcionarios.contador; i++) {
-        if (funcionarios.funcionarios[i].codigo == codigoProcurar) {
+    for (i = 0; i < funcionarios->contador; i++) {
+        if (funcionarios->funcionarios[i].codigo == codigoProcurar) {
             return i;
         }
     }
@@ -98,11 +98,10 @@ int procurarFuncionario(Funcionarios funcionarios, int codigoProcurar) {
  * @param funcionarios apontador para Funcionarios
  */
 int inserirFuncionario(Funcionarios *funcionarios) {
-    Funcionarios *apontadorTemp;
     
     if(funcionarios->contador == funcionarios->tamanho){
         puts("MEMORIA CHEIA");
-        apontadorTemp = (Funcionarios*) realloc((funcionarios),sizeof(Funcionarios) * ((funcionarios->tamanho) + TAM_INICIAL_FUNCIONARIOS));
+        Funcionarios *apontadorTemp = (Funcionarios*) realloc(funcionarios->funcionarios, sizeof (Funcionarios) * (funcionarios)->tamanho + TAM_INICIAL_FUNCIONARIOS);
 
         if (apontadorTemp != NULL) {
             funcionarios->tamanho *= TAMANHO_AUMENTA_REALLOC;
@@ -115,8 +114,8 @@ int inserirFuncionario(Funcionarios *funcionarios) {
         int codigoProcurar;
         codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do funcionario que deseja inserir: ");
         
-        if(procurarFuncionario(*funcionarios,codigoProcurar) == -1){
-            codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do funcionario que deseja inserir: ");
+        if(procurarFuncionario(funcionarios,codigoProcurar) == -1){
+            funcionarios->funcionarios->codigo = codigoProcurar;
             lerString(funcionarios->funcionarios[funcionarios->contador].nome, MAX_STR, "Nome do funcionario: ");
             
             return funcionarios->contador++; 
@@ -129,14 +128,14 @@ int inserirFuncionario(Funcionarios *funcionarios) {
 }
 
 void imprimirFuncionario(Funcionario funcionario){
-    printf("\nCodigo: %d Nome: %s ", funcionario.codigo, funcionario.nome);
+    printf("\nCodigo: %d \nNome: %s ", funcionario.codigo, funcionario.nome);
 }
 
 void listarFuncionarios(Funcionarios *funcionarios){
     int i;
-    
+    puts("Lista de Funcionários"); 
     for(i=0;i < funcionarios->contador; i++){
-       imprimirFuncionario(funcionarios.funcionarios[i]);
+       imprimirFuncionario(funcionarios->funcionarios[i]);
     }
 }
 
@@ -147,7 +146,7 @@ void editarFuncionario(Funcionarios *funcionarios){
     
     codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do funcionario que deseja editar: ");
 
-    if (procurarFuncionario(*funcionarios, codigoProcurar) == -1) {
+    if (procurarFuncionario(funcionarios, codigoProcurar) == -1) {
         while (escolha != "n" || escolha != "N") {
 
             campoEditar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Que campo deseja editar? \n"
@@ -159,13 +158,13 @@ void editarFuncionario(Funcionarios *funcionarios){
                 case 0:
                     return;
                 case 1:
-                    lerString(funcionarios->funcionarios[codigoProcurar].nome, MAX_STR, "Nome do funcionario: ");
+                    lerString(funcionarios->funcionarios[funcionarios->contador].nome, MAX_STR, "Nome do funcionario: ");
                     break;
                 case 2:
                     funcionarios->funcionarios->codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código: ");
                     break;
                 case 3:
-                    funcionarios->funcionarios->codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código: ");
+                    funcionarios->funcionarios->codigoProjeto = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código do projeto: ");
                     break;
                 default:
                     printf("Opção inválida.");
@@ -205,38 +204,40 @@ void libertarFuncionarios(Funcionarios *funcionarios)
 /*
  * 
  */
-void menuFuncinonarios(){
+void menuFuncinonarios(Funcionarios *funcionarios){
     int opcao;
-    Funcionarios funcionarios;
 
     do {
         printf("\nGestão de Projetos------------------------------------------------------");
         printf("\n1 - Inserir Funcionario");
         printf("\n2 - Alterar/Editar Funcinonário");
         printf("\n3 - Remover/Eliminar Funcinonário");
-        printf("\n0 - Sair");
+        printf("\n4 - Listar Funcionários");
+        printf("\n5 - Sair");
         printf("\n------------------------------------------------------------");
-        printf("\nFuncionarios: %d/%d", funcionarios.contador, funcionarios.tamanho);
+        printf("\nFuncionarios: %d/%d", funcionarios->contador, funcionarios->tamanho);
 
-        opcao = obterInt(1,3,"\nOpção:");
+        opcao = obterInt(1,5,"\nOpção:");
 
         switch (opcao) {
-            case 0:
-                break;
             case 1:
-                inserirFuncionario(&funcionarios);
+                inserirFuncionario(funcionarios);
                 break;
             case 2:
-                editarFuncionario(&funcionarios);
+                editarFuncionario(funcionarios);
                 break;
             case 3:
-                removerFuncionario(&funcionarios);
+                removerFuncionario(funcionarios);
+                break;
+            case 4:
+                listarFuncionarios(funcionarios);
+                break;
+            case 6:
+                main();
                 break;
             default:
                 printf("\nOpcão invalida!");
         }
 
     } while (opcao != 0);
-
-    return 0;
 }

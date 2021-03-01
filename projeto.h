@@ -14,7 +14,7 @@
 #ifndef PROJETO_H
 #define PROJETO_H
 
-#include "funcionario.h"
+#include "structs.h"
 
 #define PROJETOS_DB_FILE  "projetos.bin"
 
@@ -25,17 +25,6 @@
 #define VALOR_CODIGO_MINIMO 1 // valor minimo para o codigo do funcionario.
 #define VALOR_CODIGO_MAXIMO 5000 // valor máximo para o codigo do funcionario.
 
-typedef struct {
-    int codigo; // codigo identificador do projeto.
-    char nome[MAX_STR]; // nome do projeto.
-}Projeto;
-
-typedef struct {
-    int contador; // indica a quantidade de projetos na base de dados.
-    int tamanho; // indica a quantidade de projetos alocadas e que podem conter dados.
-    Projeto *projetos; // projetos em que o funcionario participa.
-}Projetos;
-
 void carregarProjetos(Projetos *projetos);
 
 void menuProjetos();
@@ -43,6 +32,8 @@ int inserirProjeto(Projetos *projetos);
 void designarProjeto(Projetos *projetos,Funcionarios *funcionarios);
 void guardarProjetosFILE(Projetos *projetos);
 void libertarProjetos(Projetos *Projetos);
+void listarProjetos(Projetos *projetos,Funcionarios *funcionarios);
+void imprimirProjeto(Projeto projeto,Funcionario funcionario);
 
 #endif /* PROJETO_H */
 

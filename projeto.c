@@ -16,6 +16,7 @@
 #include <stdlib.h>
 
 #include "projeto.h"
+#include "funcionario.h"
 #include "input.h"
 
 /**
@@ -97,12 +98,12 @@ int procurarProjeto(Projetos projetos, int codigoProcurar) {
  *
  * @param funcionarios apontador para Funcionarios
  */
-int criarProjeto(Projetos *projetos) {
-    Projetos *apontadorTemp;
+int criarProjeto(Projetos *projetos){   
+    int codigoProcurar;
     
     if(projetos->contador == projetos->tamanho){
         puts("MEMORIA CHEIA");
-        apontadorTemp = (Projetos*) realloc((projetos),sizeof(Projetos) * ((projetos->tamanho) + TAM_INICIAL_FUNCIONARIOS));
+        Projetos *apontadorTemp = (Projetos*) realloc((projetos->projetos),sizeof(Projetos) * (projetos->tamanho) + TAM_INICIAL_PROJETOS);
 
         if (apontadorTemp != NULL) {
             projetos->tamanho *= TAMANHO_AUMENTA_REALLOC;
@@ -112,8 +113,11 @@ int criarProjeto(Projetos *projetos) {
             puts("ERRO A REALOCAR MEMORIA");
         }
     }else{
-        projetos->projetos->codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do projeto que deseja inserir: ");
-        lerString(projetos->projetos[projetos->contador].nome, MAX_STR, "Nome do projeto: ");
+        codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do projeto que deseja inserir: ");
+        if (procurarProjeto(*projetos, codigoProcurar) == -1){
+            projetos->projetos->codigo = codigoProcurar;
+            lerString(projetos->projetos[projetos->contador].nome, MAX_STR, "Nome do projeto: ");
+        }
 
         return projetos->contador++; 
     }
@@ -131,6 +135,7 @@ void designarProjeto(Projetos *projetos,Funcionarios *funcionarios){
     }
 }
 
+
 void imprimirProjeto(Projeto projeto,Funcionario funcionario){
     printf("\nCodigo do projeto: %d Nome do projeto: %s Codigo do funcionario: %d Nome do funcionario: %s",projeto.codigo,projeto.nome, funcionario.codigo, funcionario.nome);
 }
@@ -139,7 +144,7 @@ void listarProjetos(Projetos *projetos,Funcionarios *funcionarios){
     int i;
     
     for(i=0;i < projetos->contador; i++){
-       imprimirProjeto(projetos->projetos[i],funcionarios.funcionarios[i]);
+       imprimirProjeto(projetos->projetos[i],funcionarios->funcionarios[i]);
     }
 }
 
@@ -158,19 +163,17 @@ void libertarProjetos(Projetos *projetos)
     projetos = NULL;
 }
 
-void menuFuncinonarios(){
+void menuProjetos(Projetos *projetos,Funcionarios *funcionarios){
     int opcao;
-    Projetos projetos;
-    Funcionarios funcionarios;
 
     do {
-        printf("\nGestão de Projetos------------------------------------------------------");
+        printf("\n--------- Gestão de Projetos -----------------");
         printf("\n1 - Criar Projeto");
         printf("\n2 - Designar Projeto a funcionario");
         printf("\n3 - Listar Projetos");
         printf("\n0 - Sair");
         printf("\n------------------------------------------------------------");
-        printf("\nProjetos: %d/%d", projetos.contador, projetos.tamanho);
+        printf("\nProjetos: %d/%d", projetos->contador, projetos->tamanho);
 
         opcao = obterInt(1,3,"\nOpção:");
 
@@ -181,16 +184,14 @@ void menuFuncinonarios(){
                 criarProjeto(&projetos);
                 break;
             case 2:
-                designarProjeto(*projetos);
+                designarProjeto(&projetos,&funcionarios);
                 break;
             case 3:
-                listarProjetos(projetos,funcionarios);
+                listarProjetos(&projetos,&funcionarios);
                 break;
             default:
                 printf("\nOpcão invalida!");
         }
 
     } while (opcao != 0);
-
-    return 0;
 }
