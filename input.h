@@ -14,7 +14,7 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-int obterInteiro(int minValor, int maxValor, char *msg);
+int obterInt(int minValor, int maxValor, char *msg);
 
 float obterFloat(float minValor, float maxValor, char *msg);
 

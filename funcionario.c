@@ -189,6 +189,7 @@ void removerFuncionario(Funcionarios *funcionarios){
 
     if (procurarFuncionario(funcionarios, codigoProcurar) != -1) {
         funcionarios->funcionarios->eliminado = true;
+        puts("FUNCIONARIO REMOVIDO");
     }
 }
 
@@ -214,20 +215,19 @@ void menuFuncinonarios(Funcionarios *funcionarios){
     int opcao;
 
     do {
-        printf("\nGestão de Projetos------------------------------------------------------");
+        printf("\n--------------Gestão de Funcionários----------------");
         printf("\n1 - Inserir Funcionario");
         printf("\n2 - Alterar/Editar Funcinonário");
         printf("\n3 - Remover/Eliminar Funcinonário");
         printf("\n4 - Listar Funcionários");
+        printf("\n5 - Guardar dados dos funcionários em ficheiro");
         printf("\n0 - Voltar");
         printf("\n------------------------------------------------------------");
         printf("\nFuncionarios: %d/%d", funcionarios->contador, funcionarios->tamanho);
 
-        opcao = obterInt(0,5,"\nOpção:");
+        opcao = obterInt(0,6,"\nOpção:");
 
         switch (opcao) {
-             case 0:
-                break;
             case 1:
                 inserirFuncionario(funcionarios);
                 break;
@@ -239,6 +239,9 @@ void menuFuncinonarios(Funcionarios *funcionarios){
                 break;
             case 4:
                 listarFuncionarios(funcionarios);
+                break;
+            case 5:
+                guardarFuncionariosFILE(funcionarios);
                 break;
             default:
                 printf("\nOpcão invalida!");

@@ -38,7 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/funcionario.o \
 	${OBJECTDIR}/input.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/projeto.o
+	${OBJECTDIR}/projeto.o \
+	${OBJECTDIR}/trabalho.o
 
 
 # C Compiler Flags
@@ -84,6 +85,11 @@ ${OBJECTDIR}/projeto.o: projeto.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/projeto.o projeto.c
+
+${OBJECTDIR}/trabalho.o: trabalho.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/trabalho.o trabalho.c
 
 # Subprojects
 .build-subprojects:

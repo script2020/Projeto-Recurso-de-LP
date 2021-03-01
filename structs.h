@@ -16,8 +16,11 @@
 
 #define MAX_STR 100 // limite de caracteres para as strings.
 
+typedef enum { JAN, FEV, MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ } Mes;
+
 typedef struct {
-    int dia,mes,ano;}
+    int dia,ano;
+    Mes mes;}
 Data;
 
 typedef enum { false, true } Bool;
@@ -46,6 +49,13 @@ typedef struct {
     Projeto *projetos; // projetos em que o funcionario participa.
 }Projetos;
 
+typedef enum { COMPLETA, MEIA, FALTA } TiposJornada;
 
+typedef struct {
+    Projeto projeto;
+    Funcionario funcionario;
+    Data data;
+    TiposJornada jornada;
+}Trabalho;
 #endif /* STRUCTS_H */
 
