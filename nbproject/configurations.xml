@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>funcionario.h</itemPath>
       <itemPath>input.h</itemPath>
+      <itemPath>projeto.h</itemPath>
+      <itemPath>structs.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -17,6 +19,7 @@
       <itemPath>funcionario.c</itemPath>
       <itemPath>input.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>projeto.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -50,6 +53,12 @@
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="projeto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="projeto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="structs.h" ex="false" tool="3" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>
@@ -80,6 +89,12 @@
       <item path="input.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="projeto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="projeto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="structs.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

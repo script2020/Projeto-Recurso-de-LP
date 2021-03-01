@@ -15,21 +15,23 @@
 #include <stdlib.h>
 
 #include "funcionario.h"
+#include "projeto.h"
 /*
  * 
  */
 int main() {
-
     int opcao;
     Funcionarios funcionarios;
+    Projetos projetos;
 
     do {
-        printf("Gestão de Projetos------------------------------------------------------");
+        printf("------------- Sistema de gestão --------------------------");
         printf("\n1 - Carregar base de dados");
         printf("\n2 - Gestão de Funcionários");
+        printf("\n2 - Gestão de Projetos");
         printf("\n3 - Listas");
         printf("\n0 - Sair");
-        printf("\n------------------------------------------------------------");
+        printf("\n--------------------------------------------------------");
 
         puts("\nOpção:");
         scanf("%d", &opcao);
@@ -39,10 +41,27 @@ int main() {
                 break;
             case 1:
                 carregarFuncionarios(&funcionarios);
+                carregarProjetos(&projetos);
                 break;
             case 2:
-                menuFuncinonarios();
+                funcionarios.funcionarios = (Funcionarios*) malloc(TAM_INICIAL_FUNCIONARIOS * sizeof (Funcionarios));
+                funcionarios.contador = 0;
+                funcionarios.tamanho = TAM_INICIAL_FUNCIONARIOS;
+                
+                menuFuncinonarios(&funcionarios);
                 break;
+            case 3:
+                projetos.projetos = (Projetos*) malloc(TAM_INICIAL_PROJETOS * sizeof (Projetos));
+                projetos.contador = 0;
+                projetos.tamanho = TAM_INICIAL_PROJETOS; 
+                
+                menuProjetos(&funcionarios,&projetos);
+                break;
+/*
+            case 4:
+                menuListas();
+                break;
+*/
             default:
                 printf("\nOpcão invalida!");
         }
@@ -50,6 +69,7 @@ int main() {
     } while (opcao != 0);
 
     libertarFuncionarios(&funcionarios);
+    libertarProjetos(&projetos);
 
     return 0;
 }
