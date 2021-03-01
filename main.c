@@ -15,21 +15,23 @@
 #include <stdlib.h>
 
 #include "funcionario.h"
+#include "projeto.h"
 /*
  * 
  */
 int main() {
-
     int opcao;
     Funcionarios funcionarios;
+    Projetos projetos;
 
     do {
-        printf("Gestão de Projetos------------------------------------------------------");
+        printf("------------- Sistema de gestão --------------------------");
         printf("\n1 - Carregar base de dados");
         printf("\n2 - Gestão de Funcionários");
+        printf("\n2 - Gestão de Projetos");
         printf("\n3 - Listas");
         printf("\n0 - Sair");
-        printf("\n------------------------------------------------------------");
+        printf("\n--------------------------------------------------------");
 
         puts("\nOpção:");
         scanf("%d", &opcao);
@@ -39,9 +41,16 @@ int main() {
                 break;
             case 1:
                 carregarFuncionarios(&funcionarios);
+                carregarProjetos(&projetos);
                 break;
             case 2:
                 menuFuncinonarios();
+                break;
+            case 3:
+                menuProjetos();
+                break;
+            case 3:
+                menuListas();
                 break;
             default:
                 printf("\nOpcão invalida!");
@@ -50,6 +59,7 @@ int main() {
     } while (opcao != 0);
 
     libertarFuncionarios(&funcionarios);
+    libertarProjetos(&projetos);
 
     return 0;
 }

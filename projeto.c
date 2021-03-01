@@ -157,3 +157,40 @@ void libertarProjetos(Projetos *projetos)
 
     projetos = NULL;
 }
+
+void menuFuncinonarios(){
+    int opcao;
+    Projetos projetos;
+    Funcionarios funcionarios;
+
+    do {
+        printf("\nGestão de Projetos------------------------------------------------------");
+        printf("\n1 - Criar Projeto");
+        printf("\n2 - Designar Projeto a funcionario");
+        printf("\n3 - Listar Projetos");
+        printf("\n0 - Sair");
+        printf("\n------------------------------------------------------------");
+        printf("\nProjetos: %d/%d", projetos.contador, projetos.tamanho);
+
+        opcao = obterInt(1,3,"\nOpção:");
+
+        switch (opcao) {
+            case 0:
+                break;
+            case 1:
+                criarProjeto(&projetos);
+                break;
+            case 2:
+                designarProjeto(*projetos);
+                break;
+            case 3:
+                listarProjetos(projetos,funcionarios);
+                break;
+            default:
+                printf("\nOpcão invalida!");
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}

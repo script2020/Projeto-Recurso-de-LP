@@ -213,13 +213,12 @@ void menuFuncinonarios(){
         printf("\nGestão de Projetos------------------------------------------------------");
         printf("\n1 - Inserir Funcionario");
         printf("\n2 - Alterar/Editar Funcinonário");
-        printf("\n2 - Remover/Eliminar Funcinonário");
+        printf("\n3 - Remover/Eliminar Funcinonário");
         printf("\n0 - Sair");
         printf("\n------------------------------------------------------------");
         printf("\nFuncionarios: %d/%d", funcionarios.contador, funcionarios.tamanho);
 
-        puts("\nOpção:");
-        scanf("%d", &opcao);
+        opcao = obterInt(1,3,"\nOpção:");
 
         switch (opcao) {
             case 0:
