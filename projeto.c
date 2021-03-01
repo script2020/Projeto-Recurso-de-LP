@@ -138,7 +138,7 @@ void imprimirProjeto(Projeto projeto,Funcionario funcionario){
 void listarProjetos(Projetos *projetos,Funcionarios *funcionarios){
     int i;
     
-    for(i=0;i < funcionarios->contador; i++){
+    for(i=0;i < projetos->contador; i++){
        imprimirProjeto(projetos->projetos[i],funcionarios.funcionarios[i]);
     }
 }
