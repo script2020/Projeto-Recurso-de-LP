@@ -19,7 +19,7 @@
 #include "input.h"
 
 /**
- * Carreg os funcionários do ficheiro binário (nome obtido através da constante FUNCIONARIOS_DB_FILE).
+ * Carrega os funcionários do ficheiro binário (nome obtido através da constante FUNCIONARIOS_DB_FILE).
  * Se o ficheiro existir, carrega a estrutura de dados a partir do ficheiro.
  * Se o ficheiro não existir, aloca a memória inicial com TAM_INICIAL_FUNCIONARIOS funcionarios e inicializar os restantes campos da struct Funcionarios
  *
@@ -126,6 +126,18 @@ int inserirFuncionario(Funcionarios *funcionarios) {
     }
     
     return -1;
+}
+
+void imprimirFuncionario(Funcionario funcionario){
+    printf("\nCodigo: %d Nome: %s ", funcionario.codigo, funcionario.nome);
+}
+
+void listarFuncionarios(Funcionarios *funcionarios){
+    int i;
+    
+    for(i=0;i < funcionarios->contador; i++){
+       imprimirFuncionario(funcionarios.funcionarios[i]);
+    }
 }
 
 void editarFuncionario(Funcionarios *funcionarios){
