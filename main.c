@@ -28,13 +28,12 @@ int main() {
         printf("------------- Sistema de gestão --------------------------");
         printf("\n1 - Carregar base de dados");
         printf("\n2 - Gestão de Funcionários");
-        printf("\n2 - Gestão de Projetos");
-        printf("\n3 - Listas");
+        printf("\n3 - Gestão de Projetos");
+        printf("\n4 - Listas");
         printf("\n0 - Sair");
         printf("\n--------------------------------------------------------");
 
-        puts("\nOpção:");
-        scanf("%d", &opcao);
+        opcao = obterInt(0,5,"\nOpção:");
 
         switch (opcao) {
             case 0:

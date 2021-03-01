@@ -175,7 +175,7 @@ void menuProjetos(Projetos *projetos,Funcionarios *funcionarios){
         printf("\n------------------------------------------------------------");
         printf("\nProjetos: %d/%d", projetos->contador, projetos->tamanho);
 
-        opcao = obterInt(1,3,"\nOpção:");
+        opcao = obterInt(0,5,"\nOpção:");
 
         switch (opcao) {
             case 0:

@@ -139,29 +139,29 @@ void listarFuncionarios(Funcionarios *funcionarios){
     }
 }
 
-void editarFuncionario(Funcionarios *funcionarios){
-    
+void editarFuncionario(Funcionarios *funcionarios){  
     int campoEditar,codigoProcurar;
     char escolha;
     
     codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do funcionario que deseja editar: ");
 
-    if (procurarFuncionario(funcionarios, codigoProcurar) == -1) {
+    if (procurarFuncionario(funcionarios, codigoProcurar) != -1) {
         while (escolha != "n" || escolha != "N") {
 
             campoEditar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Que campo deseja editar? \n"
                     "1 - Codigo\n"
                     "2 - Nome\n"
-                    "3 - Projeto em que está a trabalhar");
+                    "3 - Projeto em que está a trabalhar \n"
+                    "\nOpcao: ");
 
             switch (escolha) {
                 case 0:
-                    return;
+                    break;
                 case 1:
-                    lerString(funcionarios->funcionarios[funcionarios->contador].nome, MAX_STR, "Nome do funcionario: ");
+                    funcionarios->funcionarios->codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código: ");
                     break;
                 case 2:
-                    funcionarios->funcionarios->codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código: ");
+                    lerString(funcionarios->funcionarios[funcionarios->contador].nome, MAX_STR, "Nome do funcionario: ");
                     break;
                 case 3:
                     funcionarios->funcionarios->codigoProjeto = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código do projeto: ");
@@ -178,12 +178,18 @@ void editarFuncionario(Funcionarios *funcionarios){
 }
 
 /**
- * A função "eliminara" o funcionario marcando-o como removido
+ * A função "eliminar" o funcionario marcando-o como removido
  *
  * @param funcionarios apontador para Funcionarios
  */
 void removerFuncionario(Funcionarios *funcionarios){
-    funcionarios->funcionarios->eliminado = true;
+    int codigoProcurar;
+    
+    codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do funcionario que deseja eliminar: ");
+
+    if (procurarFuncionario(funcionarios, codigoProcurar) != -1) {
+        funcionarios->funcionarios->eliminado = true;
+    }
 }
 
 /**
@@ -213,13 +219,15 @@ void menuFuncinonarios(Funcionarios *funcionarios){
         printf("\n2 - Alterar/Editar Funcinonário");
         printf("\n3 - Remover/Eliminar Funcinonário");
         printf("\n4 - Listar Funcionários");
-        printf("\n5 - Sair");
+        printf("\n0 - Voltar");
         printf("\n------------------------------------------------------------");
         printf("\nFuncionarios: %d/%d", funcionarios->contador, funcionarios->tamanho);
 
-        opcao = obterInt(1,5,"\nOpção:");
+        opcao = obterInt(0,5,"\nOpção:");
 
         switch (opcao) {
+             case 0:
+                break;
             case 1:
                 inserirFuncionario(funcionarios);
                 break;
@@ -231,9 +239,6 @@ void menuFuncinonarios(Funcionarios *funcionarios){
                 break;
             case 4:
                 listarFuncionarios(funcionarios);
-                break;
-            case 6:
-                main();
                 break;
             default:
                 printf("\nOpcão invalida!");
