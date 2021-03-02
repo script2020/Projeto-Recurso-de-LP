@@ -49,11 +49,12 @@ typedef struct {
     Projeto *projetos; // projetos em que o funcionario participa.
 }Projetos;
 
-typedef enum { COMPLETA, MEIA, FALTA } TiposJornada;
+typedef enum {COMPLETA, MEIA, FALTA } TiposJornada;
 
 typedef struct {
     Projeto projeto;
     Funcionario funcionario;
+    int diasCompletos, diasMetade,diasFaltas;
     Data data;
     TiposJornada jornada;
 }Trabalho;
