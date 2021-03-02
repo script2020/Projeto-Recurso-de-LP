@@ -127,6 +127,12 @@ int inserirFuncionario(Funcionarios *funcionarios) {
     return -1;
 }
 
+/**
+ * A função deve pedir os dados ao utilizador e inserir um funcionario em funcionarios.
+ * Caso o útilizador insira os dados de um funcionario duplicado, informa o utilizdor de que não foi inserido.
+ *
+ * @param funcionario apontador para Funcionario
+ */
 void imprimirFuncionario(Funcionario funcionario){
     printf("\nCodigo: %d \nNome: %s ", funcionario.codigo, funcionario.nome);
 }
@@ -146,15 +152,14 @@ void editarFuncionario(Funcionarios *funcionarios){
     codigoProcurar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Codigo do funcionario que deseja editar: ");
 
     if (procurarFuncionario(funcionarios, codigoProcurar) != -1) {
-        while (escolha != "n" || escolha != "N") {
-
+        do{
             campoEditar = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Que campo deseja editar? \n"
                     "1 - Codigo\n"
                     "2 - Nome\n"
                     "3 - Projeto em que está a trabalhar \n"
                     "\nOpcao: ");
 
-            switch (escolha) {
+            switch (campoEditar) {
                 case 0:
                     break;
                 case 1:
@@ -171,8 +176,8 @@ void editarFuncionario(Funcionarios *funcionarios){
             }
 
             escolha = obterChar("Prentede editar mais algum campo?"
-                    "S ou s - sim / N ou n - não");
-        }
+                    "S ou s - sim / N ou n - não:  ");
+        }while(escolha != "n" || escolha != "N");
     }
 
 }

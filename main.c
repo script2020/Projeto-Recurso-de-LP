@@ -23,17 +23,19 @@ int main() {
     int opcao;
     Funcionarios funcionarios;
     Projetos projetos;
-
-    do {
+    DiasTrabalho diasTrabalho;
+    
+    do{
         printf("------------- Sistema de gestão --------------------------");
         printf("\n1 - Carregar base de dados");
         printf("\n2 - Gestão de Funcionários");
         printf("\n3 - Gestão de Projetos");
-        printf("\n4 - Listas");
+        printf("\n4 - Gestão de dias dos Projetos");
+        printf("\n5 - Listas");
         printf("\n0 - Sair");
         printf("\n--------------------------------------------------------");
 
-        opcao = obterInt(0,5,"\nOpção:");
+        opcao = obterInt(0,6,"\nOpção:");
 
         switch (opcao) {
             case 0:
@@ -56,11 +58,12 @@ int main() {
                 
                 menuProjetos(&funcionarios,&projetos);
                 break;
-/*
             case 4:
+                menuDiasdeTrabalho(&diasTrabalho);
+                break;
+            case 5:
                 menuListas();
                 break;
-*/
             default:
                 printf("\nOpcão invalida!");
         }

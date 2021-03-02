@@ -20,8 +20,8 @@ typedef enum { JAN, FEV, MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ } Mes;
 
 typedef struct {
     int dia,ano;
-    Mes mes;}
-Data;
+    Mes mes;
+}Data;
 
 typedef enum { false, true } Bool;
 
@@ -49,14 +49,15 @@ typedef struct {
     Projeto *projetos; // projetos em que o funcionario participa.
 }Projetos;
 
-typedef enum {COMPLETA, MEIA, FALTA } TiposJornada;
-
 typedef struct {
     Projeto projeto;
     Funcionario funcionario;
     int diasCompletos, diasMetade,diasFaltas;
     Data data;
-    TiposJornada jornada;
 }Trabalho;
+
+typedef struct {
+    Trabalho *diasTrabalho;
+}DiasTrabalho;
 #endif /* STRUCTS_H */
 

@@ -19,8 +19,11 @@
 #define VALOR_MINIMO_MES 1
 #define VALOR_MAXIMO_MES 12
 
-void registarDiasTrabalho(Trabalho *trabalho);
-void exportarDados(Trabalho *trabalho);
+void guardarDias(DiasTrabalho *diasTrabalho, int limiteDias);
+void registarDiasTrabalho(DiasTrabalho *diasTrabalho);
+void escreverDados(DiasTrabalho *diasTrabalho);
+void exportarDados(DiasTrabalho *diasTrabalho);
+void menuDiasdeTrabalho(DiasTrabalho *diasTrabalho);
 
 #endif /* TRABALHO_H */
 
