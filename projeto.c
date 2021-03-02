@@ -93,10 +93,10 @@ int procurarProjeto(Projetos projetos, int codigoProcurar) {
 }
 
 /**
- * A função deve pedir os dados ao utilizador e inserir um funcionario em funcionarios.
- * Caso o útilizador insira os dados de um funcionario duplicado, informa o utilizdor de que não foi inserido.
+ * A função deve pedir os dados ao utilizador e criar um projeto em projetos.
+ * Caso o útilizador insira os dados de um projeto duplicado, informa o utilizdor de que não foi inserido.
  *
- * @param funcionarios apontador para Funcionarios
+ * @param projetos apontador para Projetos
  */
 int criarProjeto(Projetos *projetos){   
     int codigoProcurar;
@@ -125,6 +125,12 @@ int criarProjeto(Projetos *projetos){
     return -1;
 }
 
+/**
+ * Relacionar o projeto ao funcionario através da atribuição do código do funcionário ao código do projeto
+ *
+ * @param projetos apontador para Projetos
+ * @param projetos apontador para Funcionarios
+ */
 void designarProjeto(Projetos *projetos,Funcionarios *funcionarios){
     int codigoProcurar;
     
@@ -135,11 +141,22 @@ void designarProjeto(Projetos *projetos,Funcionarios *funcionarios){
     }
 }
 
-
+/**
+ * Imprime os dados do projeto e do funcionario relacionado a ele
+ *
+ * @param projetos apontador para Projetos
+ * @param projetos apontador para Funcionarios
+ */
 void imprimirProjeto(Projeto projeto,Funcionario funcionario){
     printf("\nCodigo do projeto: %d Nome do projeto: %s Codigo do funcionario: %d Nome do funcionario: %s",projeto.codigo,projeto.nome, funcionario.codigo, funcionario.nome);
 }
 
+/**
+ * Lista os dados do projeto e do funcionario relacionado a ele
+ *
+ * @param projetos apontador para Projetos
+ * @param projetos apontador para Funcionarios
+ */
 void listarProjetos(Projetos *projetos,Funcionarios *funcionarios){
     int i;
     
@@ -149,9 +166,9 @@ void listarProjetos(Projetos *projetos,Funcionarios *funcionarios){
 }
 
 /**
- * A função deve libertar a memória alocada.
+ * A função liberta a memória alocada para os projetos.
  *
- * @param funcionarios apontador para Funcionarios
+ * @param projetos apontador para Projetos
  */
 void libertarProjetos(Projetos *projetos)
 {

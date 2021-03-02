@@ -18,6 +18,7 @@
 #include "projeto.h"
 #include "input.h"
 
+/*
 void imprimirProjetosMaisDiasCompletos(DiasTrabalho diasTrabalho){
     printf("%d %s %d", diasTrabalho.diasTrabalho->projeto.codigo, 
             diasTrabalho.diasTrabalho->projeto.nome,
@@ -29,23 +30,41 @@ void imprimirProjetosMaisFaltas(DiasTrabalho diasTrabalho){
             diasTrabalho.diasTrabalho->projeto.nome,
             diasTrabalho.diasTrabalho->diasCompletos);
 }
+*/
 
+/**
+ * Listar as dados dos projetos com mais dias de trabalho completos
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
+ */
 void listarProjetosMaisDiasTrabalhadosCompletos(DiasTrabalho diasTrabalho){
     int i;
     
     for(i=0;i < diasTrabalho.diasTrabalho->data.mes; i++){
-       imprimirProjetosMaisDiasCompletos(diasTrabalho.diasTrabalho[i]);
+      printf("%d %s %d", diasTrabalho.diasTrabalho->projeto.codigo, 
+            diasTrabalho.diasTrabalho->projeto.nome,
+            diasTrabalho.diasTrabalho->diasCompletos);
     }
 }
-
+/**
+ * Listar as dados dos projetos com mais faltas
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
+ */
 void listarProjetosMaisFaltas(DiasTrabalho diasTrabalho){
     int i;
     
     for(i=0;i < diasTrabalho.diasTrabalho->data.mes; i++){
-       imprimirProjetosMaisFaltas(diasTrabalho.diasTrabalho[i]);
+        printf("%d %s %d", diasTrabalho.diasTrabalho->projeto.codigo, 
+            diasTrabalho.diasTrabalho->projeto.nome,
+            diasTrabalho.diasTrabalho->diasCompletos);
     }
 }
 
+/*
+ * A função mostra as listas associdas ao projetos
+
+ */
 void menuListas(){
     int opcao;
     
@@ -65,7 +84,7 @@ void menuListas(){
                 listarProjetosMaisDiasTrabalhadosCompletos(diasTrabalho);
                 break;
             case 2:
-                listarProjetosMaisFaltas(diasTrabalho);
+                listarProjetosMaisDiasTrabalhadosCompletos(diasTrabalho);
                 break;
             default:
                 printf("\nOpcão invalida!");

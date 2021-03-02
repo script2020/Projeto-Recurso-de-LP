@@ -52,7 +52,7 @@ typedef struct {
 typedef struct {
     Projeto projeto;
     Funcionario funcionario;
-    int diasCompletos, diasMetade,diasFaltas;
+    int diasCompletos, diasMetade,diasFaltas,diasFimdeSemana;
     Data data;
 }Trabalho;
 

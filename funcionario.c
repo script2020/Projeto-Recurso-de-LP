@@ -5,13 +5,6 @@
  */
 
 
-/* 
- * File:   main.c
- * Author: pedro
- *
- * Created on 22 de fevereiro de 2021, 15:28
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -79,7 +72,14 @@ void guardarFuncionariosFILE(Funcionarios *funcionarios){
 
     fclose(fp);
 }
-
+/**
+ * A função procura se o funcionário correspondente ao código intrudizo a procurar existe não
+ * Se existir retorna o valor da posição do array onde está armazenado
+ * Se não retorna -1
+ *
+ * @param funcionarios estrutura de Funcionarios
+ * @param codigoProcurar
+ */
 int procurarFuncionario(Funcionarios *funcionarios, int codigoProcurar) {
     int i;
     for (i = 0; i < funcionarios->contador; i++) {
@@ -128,8 +128,7 @@ int inserirFuncionario(Funcionarios *funcionarios) {
 }
 
 /**
- * A função deve pedir os dados ao utilizador e inserir um funcionario em funcionarios.
- * Caso o útilizador insira os dados de um funcionario duplicado, informa o utilizdor de que não foi inserido.
+ * Imprime os dados do funcionário
  *
  * @param funcionario apontador para Funcionario
  */
@@ -137,6 +136,11 @@ void imprimirFuncionario(Funcionario funcionario){
     printf("\nCodigo: %d \nNome: %s ", funcionario.codigo, funcionario.nome);
 }
 
+/**
+ * Lista os funcionários registados no sistema
+ *
+ * @param funcionarios apontador para Funcionarios
+ */
 void listarFuncionarios(Funcionarios *funcionarios){
     int i;
     puts("Lista de Funcionários"); 
@@ -145,6 +149,12 @@ void listarFuncionarios(Funcionarios *funcionarios){
     }
 }
 
+/**
+ * Edita os dados de um funcionário
+ * Para isso primeiro verifica se o funcionário já existe e depois caso ele exista, editar os valores dos campos do funcionário
+ *
+ * @param funcionarios apontador para Funcionarios
+ */
 void editarFuncionario(Funcionarios *funcionarios){  
     int campoEditar,codigoProcurar;
     char escolha;
@@ -166,7 +176,7 @@ void editarFuncionario(Funcionarios *funcionarios){
                     funcionarios->funcionarios->codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código: ");
                     break;
                 case 2:
-                    lerString(funcionarios->funcionarios[funcionarios->contador].nome, MAX_STR, "Nome do funcionario: ");
+                    lerString(funcionarios->funcionarios[codigoProcurar].nome, MAX_STR, "Nome do funcionario: ");
                     break;
                 case 3:
                     funcionarios->funcionarios->codigoProjeto = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Código do projeto: ");
@@ -183,7 +193,7 @@ void editarFuncionario(Funcionarios *funcionarios){
 }
 
 /**
- * A função "eliminar" o funcionario marcando-o como removido
+ * A função "eliminará" o funcionario marcando-o como removido
  *
  * @param funcionarios apontador para Funcionarios
  */
@@ -214,7 +224,9 @@ void libertarFuncionarios(Funcionarios *funcionarios)
 }
 
 /*
- * 
+ * A função mostra as funcionalidades associdas à gestão de funcionários
+ *
+ * @param funcionarios apontador para Funcionarios
  */
 void menuFuncinonarios(Funcionarios *funcionarios){
     int opcao;

@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 
-/* 
- * File:   main.c
- * Author: pedro
- *
- * Created on 22 de fevereiro de 2021, 15:28
- */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,14 +12,26 @@
 #include "projeto.h"
 #include "input.h"
 
+/**
+ * Guarda os dias de trabalho completo, meios e ao fim de semana e as faltas do funcionário num certo mês
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
+ * @param limiteDias
+ */
 void guardarDias(DiasTrabalho *diasTrabalho, int limiteDias){
     do {
          diasTrabalho->diasTrabalho->diasCompletos = obterInt(1, limiteDias, "Indique o nº de dias completos que trabalhou: ");
-         diasTrabalho->diasTrabalho->diasMetade = obterInt(1, limiteDias, "Indique o codigo do projeto em que trabalhou: ");
-         diasTrabalho->diasTrabalho->diasFaltas = obterInt(1, limiteDias, "Indique o codigo do projeto em que trabalhou: ");
+         diasTrabalho->diasTrabalho->diasMetade = obterInt(1, limiteDias, "Indique nº de dias meio que trabalhou: ");
+         diasTrabalho->diasTrabalho->diasFaltas = obterInt(1, limiteDias, "Indique nº de faltas que teve: ");
+         diasTrabalho->diasTrabalho->diasFimdeSemana = obterInt(1, limiteDias, "Indique nº de dias ao fim de semana que trabalhou: ");
     } while ( diasTrabalho->diasTrabalho->diasCompletos +  diasTrabalho->diasTrabalho->diasMetade +  diasTrabalho->diasTrabalho->diasFaltas > limiteDias);
 }
 
+/**
+ * Guarda o códigos do funcionário e do projeto e o mês, do qual serão armazenados os dias de trabalho completo, meios e ao fim de semana e as faltas do funcionário
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
+ */
 void registarDiasTrabalho(DiasTrabalho *diasTrabalho){
     diasTrabalho->diasTrabalho->funcionario.codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Indique o codigo do funcionáio que trabalhou: ");
     diasTrabalho->diasTrabalho->projeto.codigo = obterInt(VALOR_CODIGO_MINIMO, VALOR_CODIGO_MAXIMO, "Indique o codigo do projeto em que trabalhou: ");
@@ -72,6 +78,12 @@ void registarDiasTrabalho(DiasTrabalho *diasTrabalho){
 
 }
 
+/**
+ * Escreve o códigos do funcionario e do projeto e o mês, do qual serão armazenados os dias de trabalho completo, meios e ao fim de semana e as faltas do funcionário
+ * num ficheiro para exportar
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
+ */
 void escreverDados(DiasTrabalho *diasTrabalho){
     FILE *fp = fopen("relatorio.txt", "w");
     if (fp == NULL) {
@@ -88,6 +100,11 @@ void escreverDados(DiasTrabalho *diasTrabalho){
     fclose(fp);
 }
 
+/**
+ * Exporta os nº de dias de dias de trabalho completo, meios e ao fim de semana e as faltas do funcionário de ume mês escolhido pelo utilizador
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
+ */
 void exportarDados(DiasTrabalho *diasTrabalho){
     int mes = obterInt(VALOR_MINIMO_MES, VALOR_MAXIMO_MES, "Indique o numero do mês, de 1 a 12, que pretende registar os dias de trabalho: ");
     
@@ -132,7 +149,9 @@ void exportarDados(DiasTrabalho *diasTrabalho){
 }
 
 /*
- * 
+ * A função mostra as funcionalidades associdas à gestão de dias de trabalho
+ *
+ * @param diasTrabalho apontador para DiasTrabalho
  */
 void menuDiasdeTrabalho(DiasTrabalho *diasTrabalho){
     int opcao;

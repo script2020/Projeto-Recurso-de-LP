@@ -28,7 +28,7 @@
 void carregarProjetos(Projetos *projetos);
 
 void menuProjetos();
-int inserirProjeto(Projetos *projetos);
+int criarProjeto(Projetos *projetos);
 void designarProjeto(Projetos *projetos,Funcionarios *funcionarios);
 void guardarProjetosFILE(Projetos *projetos);
 void libertarProjetos(Projetos *Projetos);

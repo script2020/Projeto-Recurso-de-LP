@@ -18,6 +18,7 @@
 
 void menuListas();
 void imprimirProjetosInfo(DiasTrabalho diasTrabalho);
-void listarProjetosMaisDiasTrabalhos(DiasTrabalho diasTrabalho);
+void imprimirProjetosMaisDiasCompletos(DiasTrabalho diasTrabalho);
+void listarProjetosMaisFaltas(DiasTrabalho diasTrabalho);
 #endif /* LISTAS_H */
 

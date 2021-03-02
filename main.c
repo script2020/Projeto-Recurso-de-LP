@@ -30,7 +30,7 @@ int main() {
         printf("\n1 - Carregar base de dados");
         printf("\n2 - Gestão de Funcionários");
         printf("\n3 - Gestão de Projetos");
-        printf("\n4 - Gestão de dias dos Projetos");
+        printf("\n4 - Gestão de dias de trabalho");
         printf("\n5 - Listas");
         printf("\n0 - Sair");
         printf("\n--------------------------------------------------------");
